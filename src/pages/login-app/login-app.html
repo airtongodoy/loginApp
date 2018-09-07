@@ -1,0 +1,58 @@
+
+
+<ion-content padding class="getstart">
+
+  <div id="logo" padding text-center>
+    <img src="./assets/imgs/logo.png">
+  </div>
+
+  <div padding>
+    <ion-segment [(ngModel)]="opt" color="light">
+      <ion-segment-button value="signin">
+        Acessar
+      </ion-segment-button>
+      <ion-segment-button value="signup">
+        Cadastrar
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="opt">
+    <form (submit)="loginUsuario(usuarioApp)" *ngSwitchCase="'signin'">
+
+          <ion-input type="email" [(ngModel)]="usuarioApp.emailUsuario" name="emailUsuario" ></ion-input>
+
+          <ion-input type="password" [(ngModel)]="usuarioApp.senhaAcesso" name="senhaAcesso"></ion-input>
+
+        <div padding text-center>
+          <button ion-button round color="light" icon-right >
+            Acessar<ion-icon name="log-in"></ion-icon>
+          </button>
+        </div>
+
+    </form>
+
+    <form (submit)="cadastrarUsuario(usuarioApp)" *ngSwitchCase="'signup'">
+
+      <ion-label float>Nome</ion-label>
+          <ion-input type="text" [(ngModel)]="usuarioApp.nomeUsuario" name="nomeUsuario"></ion-input>
+
+          <ion-label float>E-mail</ion-label>
+          <ion-input type="email" [(ngModel)]="usuarioApp.emailUsuario" name="emailUsuario" ></ion-input>
+
+          <ion-label float>Senha</ion-label>
+          <ion-input type="password" [(ngModel)]="usuarioApp.senhaAcesso" name="senhaAcesso"></ion-input>
+
+          <ion-label float>Senha novamente</ion-label>
+          <ion-input type="password" name="senhaAcessoConfirmacao"></ion-input>
+
+        <div padding text-center>
+          <button ion-button round color="light" icon-right>
+            Cadastrar<ion-icon name="person-add"></ion-icon>
+          </button>
+        </div>
+
+    </form>
+
+  </div>
+</ion-content>

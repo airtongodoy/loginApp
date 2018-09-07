@@ -1,3 +1,7 @@
 page-contact {
-
+  .contactPage{
+    background: rgb(71, 43, 228);  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom,rgb(233, 231, 101),rgb(134, 199, 97));  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom,rgb(233, 231, 101),rgb(134, 199, 97)); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  }
 }

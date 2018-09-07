@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar >
+      <ion-buttons left>
+        <button ion-button icon-only menuToggle="left" color="light">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+      <ion-title class="fontColor">Novidades</ion-title>
+      <ion-buttons right>
+        <button ion-button icon-only menuToggle="right" color="light">
+          <ion-icon name="menu"></ion-icon>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding class="newsBg">
+
+    <ion-item *ngFor="let novidade of newsExistentes | async">
+      <p>{{ novidade.titulo }}</p>
+
+      <hr>
+      <p>{{ novidade.conteudo }}</p>
+    </ion-item>
+
+</ion-content>

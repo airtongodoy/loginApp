@@ -1,6 +1,11 @@
+//import { Camera } from '@ionic-native/camera';
+//import { CardIO } from '@ionic-native/card-io';
+
+import { AngularFireModule } from 'angularfire2';
+
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule, IonicErrorHandler, IonicPageModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
@@ -10,6 +15,18 @@ import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { AuthLoginProvider } from '../providers/auth-login/auth-login';
+
+// Configurações do FIREBASE
+import { configFirebase } from '../configFirebase';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { UsuarioProvider } from '../providers/usuario/usuario';
+import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
+import { LoginAppPage } from '../pages/login-app/login-app';
+import { NewsProvider } from '../providers/news/news';
+import { NewsPage } from '../pages/news/news';
+import { MenuAppPage } from '../pages/menu-app/menu-app';
+import { AppState } from './app.global';
 
 @NgModule({
   declarations: [
@@ -17,11 +34,27 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    NewsPage,
+    TabsPage,
+    LoginAppPage,
+    MenuAppPage
+
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicPageModule.forChild(LoginAppPage),
+    // Configurações do Firebase
+    AngularFireModule.initializeApp(configFirebase.firebase),
+
+    // Just like that, you're offline enabled!
+    AngularFirestoreModule.enablePersistence(),
+
+    // Configuração do serviço de autenticação do firebase
+    AngularFireAuthModule,
+
+    // Configuração do serviço de banco de dados do firebase
+    AngularFirestoreModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,12 +62,21 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    NewsPage,
+    TabsPage,
+    LoginAppPage,
+    MenuAppPage
   ],
   providers: [
     StatusBar,
+    AppState,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    AuthLoginProvider,
+    UsuarioProvider,
+    AngularFirestore,
+    NewsProvider
+    //,Camera, CardIO
   ]
 })
 export class AppModule {}

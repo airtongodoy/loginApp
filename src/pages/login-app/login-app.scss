@@ -1,0 +1,40 @@
+page-login-app {
+
+  div#logo {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+  .content {
+    background-color:  rgb(93, 101, 212);
+  }
+  .item {
+    background-color: color($colors, primary);
+  }
+  .invalid {
+    border-bottom: 1px solid #ff6153;
+  }
+  ion-label {
+    color: color($colors, light);
+    text-align: center;
+    margin: 0;
+  }
+
+  .label {
+    margin: 0 0 1px 0;
+  }
+
+  ion-input {
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 0 0 5px 0;
+  }
+
+  .getstart {
+
+    background-image: url('../../assets/imgs/img_login.jpg');
+    // background: url('../../img/getstart.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+  //  ## Heading
+  }
+}
