@@ -19,7 +19,7 @@ export class AuthLoginProvider {
 
    // Atributo usuário que será usado para cadastro e autenticação
    usuarioSistema: Observable<firebase.User>;
-uidUser: string;
+   uidUser: string;
 
   constructor(private firebaseAuth: AngularFireAuth) {
     this.usuarioSistema = firebaseAuth.authState;

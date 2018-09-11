@@ -117,4 +117,7 @@ export class UsuarioProvider {
     this.usuarioRefFirebase.doc(id).update(userUpd);
   }
 
+  getUidUser(){
+    return this.userId;
+  }
 }

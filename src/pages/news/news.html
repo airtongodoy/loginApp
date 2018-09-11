@@ -16,11 +16,17 @@
 
 <ion-content padding class="newsBg">
 
-    <ion-item *ngFor="let novidade of newsExistentes | async">
-      <p>{{ novidade.titulo }}</p>
-
-      <hr>
-      <p>{{ novidade.conteudo }}</p>
-    </ion-item>
+    <ion-card *ngFor="let novidade of newsExistentes | async">
+        <img src="{{novidade.urlImagem}}"/>
+        <ion-card-content>
+          <ion-card-title>
+              <label>Título:</label>
+              {{ novidade.titulo }}
+            </ion-card-title>
+          <p>
+              {{ novidade.conteudo }}
+          </p>
+        </ion-card-content>
+      </ion-card>
 
 </ion-content>

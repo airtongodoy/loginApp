@@ -8,6 +8,6 @@ import { AddNewsPage } from './add-news';
   ],
   imports: [
     IonicPageModule.forChild(AddNewsPage),
-  ],
+  ]
 })
 export class AddNewsPageModule {}

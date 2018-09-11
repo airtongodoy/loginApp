@@ -12,11 +12,10 @@ import { News } from '../../models/news';
 @Injectable()
 export class NewsProvider {
 
-
-
-  private xx: string;
   //Referenciando o nome da "entidade" no firebase
   private idEntidadeNews = '/news/';
+  public  pathReference: string = 'news/';
+  public  pathReferenceImage: string = 'imagesNews/';
 
   //Objeto que armazenará a coleção de Novidades disponíveis
   private newsCollection: AngularFirestoreCollection<News>;
@@ -27,20 +26,14 @@ export class NewsProvider {
     // Verificando se o usuário está logado para criarmos o caminho
     if(this.authLogin.usuarioSistema.subscribe(authLogin => {
 
-      // Caso o usuário já esteja logado (!= null) vamos setar alguns valores para facilitar encontrar informações do usuário caso necessário
+      // Caso o usuário já esteja logado (!= null) vamos vamos buscar as novidades para serem exibidas
       if(authLogin != null) {
 
         this.newsCollection = angFireStore.collection<News>(this.idEntidadeNews, ref => {
           return ref;
         });
 
-
         //authLogin.uid - representa o ID único do usuário, gerado automáticamente pelo Firebase quando fez o cadastro do usuário
-        this.xx = authLogin.uid;
-        console.log('News 01');
-      } else{
-        //Se ainda não estiver logado, setamos o ID para vazio
-        this.xx = '';
       }
     }))
 
@@ -49,9 +42,8 @@ export class NewsProvider {
 
   findNewsAtivas(){
 
-    console.log('News 02');
     return this.angFireStore.collection<News>(this.idEntidadeNews, ref => {
-      return ref.where('dataValidade', '>', new Date());
+      return ref.where('dataValidade', '>=', new Date());
     }).snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as News;
@@ -62,7 +54,11 @@ export class NewsProvider {
   }
 
   addNews(newsAdd: News){
-    this.newsCollection.add(newsAdd);
+    //new DateTime.fromMillisecondsSinceEpoch(
+      newsAdd.dataNovidade = new Date(newsAdd.dataNovidade);
+      newsAdd.dataValidade = new Date(newsAdd.dataValidade);
+
+    return this.newsCollection.add(newsAdd);
   }
 
   updateNews(newsUpd: News){
@@ -72,9 +68,6 @@ export class NewsProvider {
   disableNews(newsDisable: News){
     this.newsCollection.doc(newsDisable.idNews).update(newsDisable);
   }
-
-
-
 
   /*
           pegarTarefas(finalizada: boolean) {

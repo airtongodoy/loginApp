@@ -7,36 +7,46 @@
 
 
 <ion-content padding>
-  <ion-card>
+  <form (submit)="adicionarNovaNews(newsCadastrando)">
+    <ion-card>
 
-  <ion-card-content>
+      <ion-card-content>
 
-    <ion-item>
-      <ion-label floating>Título</ion-label>
-      <ion-input type="text" [(ngModel)]="newsCadastrando.titulo" maxlength="50"></ion-input>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Título</ion-label>
+          <ion-input type="text" [(ngModel)]="newsCadastrando.titulo" name="titulo" maxlength="50"></ion-input>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Conteúdo</ion-label>
-      <ion-textarea #myInputTextArea [(ngModel)]="newsCadastrando.conteudo" rows="5" maxLength="500" (keyup)="resize()"></ion-textarea>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Conteúdo</ion-label>
+          <ion-textarea [(ngModel)]="newsCadastrando.conteudo" rows="5" name="conteudo" maxLength="500" ></ion-textarea>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Data Referência</ion-label>
-      <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="newsCadastrando.dataNovidade"></ion-datetime>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Data Referência</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="newsCadastrando.dataNovidade" name="dataNovidade" ></ion-datetime>
+        </ion-item>
 
-    <ion-item>
-      <ion-label floating>Validade</ion-label>
-      <ion-datetime displayFormat="DD/MMM/YYYY" [(ngModel)]="newsCadastrando.dataValidade"></ion-datetime>
-    </ion-item>
+        <ion-item>
+          <ion-label floating>Validade</ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="newsCadastrando.dataValidade" name="dataValidade" ></ion-datetime>
+        </ion-item>
 
-    <button ion-button color="secondary" block (click)="adicionarNovaNews(newsCadastrando)">
-        Salvar
-    </button>
+        <div class="gallery-button" text-center>
 
-  </ion-card-content>
+              <img [src]="imageSrc" />
+              <ion-icon name="camera" (click)="getOpenGallery()"> Escolha uma Foto </ion-icon>
 
-</ion-card>
 
+        </div>
+
+        <div padding text-center>
+            <button ion-button round color="light" icon-right>
+              Salvar<ion-icon name="cloud-upload"></ion-icon>
+            </button>
+        </div>
+
+      </ion-card-content>
+    </ion-card>
+</form>
 </ion-content>

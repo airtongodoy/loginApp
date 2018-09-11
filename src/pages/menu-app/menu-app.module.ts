@@ -4,10 +4,15 @@ import { MenuAppPage } from './menu-app';
 
 @NgModule({
   declarations: [
-    MenuAppPage,
+    MenuAppPage
   ],
   imports: [
-    IonicPageModule.forChild(MenuAppPage),
+
+    IonicPageModule.forChild(MenuAppPage)
   ],
+  entryComponents: [
+
+  ]
+
 })
 export class MenuAppPageModule {}

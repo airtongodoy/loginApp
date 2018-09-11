@@ -1,4 +1,9 @@
-//import { Camera } from '@ionic-native/camera';
+import { SaveImageFirebase } from './../providers/util/saveImageFirebase';
+import { ToastService } from './../providers/util/toast.service';
+import { LogoutAppPage } from './../pages/logout-app/logout-app';
+import { Camera } from '@ionic-native/camera';
+import { AddNewsPage } from '../pages/add-news/add-news';
+import { CameraProvider } from '../providers/util/camera.provider';
 //import { CardIO } from '@ionic-native/card-io';
 
 import { AngularFireModule } from 'angularfire2';
@@ -28,6 +33,8 @@ import { NewsPage } from '../pages/news/news';
 import { MenuAppPage } from '../pages/menu-app/menu-app';
 import { AppState } from './app.global';
 
+//import { Camera } from '@ionic-native/camera';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -37,7 +44,9 @@ import { AppState } from './app.global';
     NewsPage,
     TabsPage,
     LoginAppPage,
-    MenuAppPage
+    MenuAppPage,
+    LogoutAppPage,
+    AddNewsPage
 
   ],
   imports: [
@@ -65,7 +74,9 @@ import { AppState } from './app.global';
     NewsPage,
     TabsPage,
     LoginAppPage,
-    MenuAppPage
+    MenuAppPage,
+    LogoutAppPage,
+    AddNewsPage
   ],
   providers: [
     StatusBar,
@@ -75,7 +86,11 @@ import { AppState } from './app.global';
     AuthLoginProvider,
     UsuarioProvider,
     AngularFirestore,
-    NewsProvider
+    NewsProvider,
+    Camera,
+    CameraProvider,
+    ToastService,
+    SaveImageFirebase
     //,Camera, CardIO
   ]
 })

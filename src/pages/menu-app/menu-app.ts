@@ -1,3 +1,4 @@
+import { HomePage } from './../home/home';
 import { Component, ViewChild } from '@angular/core';
 //import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { Nav, Platform, NavController, NavParams, MenuController } from 'ionic-angular';
@@ -7,6 +8,10 @@ import { AppState } from '../../app/app.global';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TabsPage } from '../tabs/tabs';
+import { Page } from 'ionic-angular/umd/navigation/nav-util';
+
+import { LogoutAppPage } from '../logout-app/logout-app';
+import { AddNewsPage } from '../add-news/add-news';
 
 /**
  * Generated class for the MenuAppPage page.
@@ -31,8 +36,8 @@ export class MenuAppPage {
 
   activePage = new Subject();
 
-  pages: Array<{ title: string, component: any, active: boolean, icon: string }>;
-  rightMenuItems: Array<{ icon: string, active: boolean }>;
+  pages: Array<{id:number,  title: string, component: Page, active: boolean, icon: string }>;
+  rightMenuItems: Array<{id:number,  icon: string, active: boolean, component: Page}>;
   state: any;
 
   //@ViewChild(navCtrl) nav: Nav;
@@ -49,29 +54,29 @@ export class MenuAppPage {
     this.initializeApp();
 
     this.rightMenuItems = [
-      { icon: 'home', active: true },
-      { icon: 'alarm', active: false },
-      { icon: 'analytics', active: false },
-      { icon: 'archive', active: false },
-      { icon: 'basket', active: false },
-      { icon: 'body', active: false },
-      { icon: 'bookmarks', active: false },
-      { icon: 'camera', active: false },
-      { icon: 'beer', active: false },
-      { icon: 'power', active: false },
+      {id:1,  icon: 'home',       active: true,  component: HomePage},
+      {id:2,  icon: 'alarm',      active: false, component: HomePage},
+      {id:3,  icon: 'analytics',  active: false, component: HomePage},
+      {id:4,  icon: 'archive',    active: false, component: HomePage},
+      {id:5,  icon: 'basket',     active: false, component: HomePage},
+      {id:6,  icon: 'body',       active: false, component: HomePage},
+      {id:7,  icon: 'bookmarks',  active: false, component: HomePage},
+      {id:8,  icon: 'camera',     active: false, component: AddNewsPage},
+      {id:9,  icon: 'beer',       active: false, component: HomePage},
+      {id:10, icon: 'power',      active: false, component: LogoutAppPage},
     ];
 
     this.pages = [
-      { title: 'Home', component: 'SideMenuPage', active: true, icon: 'home' },
-      { title: 'My Address', component: 'SideMenuPage', active: false, icon: 'map' },
-      { title: 'My Orders',
-        component: 'SideMenuPage', active: false, icon: 'ionic' },
-      { title: 'My Cart', component: 'SideMenuPage', active: false, icon: 'ionic' },
-      { title: 'Login', component: 'SideMenuPage', active: false, icon: 'archive' },
-      { title: 'Offer Zone', component: 'SideMenuPage', active: false, icon: 'body' },
-      { title: 'Need Help', component: 'SideMenuPage', active: false, icon: 'bookmarks' },
-      { title: 'Rate Us', component: 'SideMenuPage', active: false, icon: 'book' },
-      { title: 'Settings', component: 'SideMenuPage', active: false, icon: 'map' },
+      {id:1,   title: 'Home',        component: HomePage,     active: true,  icon: 'home' },
+      {id:2,   title: 'My Address',  component: HomePage,     active: false, icon: 'map' },
+      {id:3,   title: 'My Orders',   component: HomePage,     active: false, icon: 'ionic' },
+      {id:4,   title: 'My Cart',     component: HomePage,     active: false, icon: 'ionic' },
+      {id:5,   title: 'Login',       component: HomePage,     active: false, icon: 'archive' },
+      {id:6,   title: 'Offer Zone',  component: HomePage,     active: false, icon: 'body' },
+      {id:7,   title: 'Need Help',   component: HomePage,     active: false, icon: 'bookmarks' },
+      {id:8,   title: 'Rate Us',     component: HomePage,     active: false, icon: 'book' },
+      {id:9,   title: 'Settings',    component: HomePage,     active: false, icon: 'map' },
+      {id:10,  title: 'Sair',        component: LogoutAppPage, active: false, icon: 'power'}
 
     ];
 
@@ -94,15 +99,19 @@ export class MenuAppPage {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-    this.activePage.next(page);
+    this.nav.push(page.component);
+    this.activePage.next(page.component);
   }
 
   rightMenuClick(item) {
     this.rightMenuItems.map(menuItem => menuItem.active = false);
     item.active = true;
+
+    //item.actionExecute;
+
+    this.nav.push(item.component);
+    this.activePage.next(item.component);
+
   }
 
   ionViewDidLoad() {

@@ -27,8 +27,6 @@ export class NewsPage {
 
   ionViewDidLoad() {
     this.newsExistentes = this.newsProvider.findNewsAtivas();
-    console.log('News 03');
-    console.log(this.newsExistentes);
   }
 
   openPage(pageName){

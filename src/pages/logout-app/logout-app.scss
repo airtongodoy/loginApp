@@ -1,0 +1,32 @@
+page-logout-app {
+  .background {
+
+    background-image: url('../../assets/imgs/fundoAzul.jpg');
+    // background: url('../../img/getstart.png');
+    background-repeat: no-repeat;
+    background-size:cover;
+  //  ## Heading
+  }
+
+  .imageLogout {
+    max-width: 250px;
+    //height: 250px;
+    //padding: .5em;
+
+    align-content: center;
+    //height: 12vh;
+    //border-radius: 50%;
+  }
+
+  .paddingLogout{
+    padding: 60px!important;
+  }
+
+  .textSair {
+    color: #b91c1c;
+    font-stretch: expanded;
+    /* font-style: oblique; */
+    font-weight: bold;
+    font-size: 20px;
+  }
+}
