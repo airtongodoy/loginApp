@@ -42,27 +42,28 @@ $colors: (
 );
 
 
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
-
-
+$loading-ios-background: rgba(0, 0, 0, 0.87);
+$loading-ios-text-color:#f4f4f4;
+$loading-ios-max-width:300px;
 
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
-
-
-
+$loading-md-background:rgba(0, 0, 0, 0.87);
+$loading-md-text-color:#f4f4f4;
+$loading-md-max-width:300px;
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 
-
-
-
+$loading-wp-background:rgba(0, 0, 0, 0.87);
+$loading-wp-text-color:#f4f4f4;
+$loading-wp-max-width:300px;
 // App Theme
 // --------------------------------------------------
 // Ionic apps can have different themes applied, which can

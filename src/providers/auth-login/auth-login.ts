@@ -23,10 +23,6 @@ export class AuthLoginProvider {
 
   constructor(private firebaseAuth: AngularFireAuth) {
     this.usuarioSistema = firebaseAuth.authState;
-
-    console.log('Hello AuthProvider Provider');
-
-    //this.usuarioSistema = firebaseAuth.authState;
   }
 
   //Cadastrar o usuário
@@ -41,17 +37,8 @@ export class AuthLoginProvider {
       return ref;
     });
 
-    console.log(this.firebaseAuth.auth.currentUser);
-    /*.then(userId => {
-      console.log(userId)
-    });*/
   }
 
-  //Método para Logout
-  /*async logoutSistema(){
-    //const userAut: any = await this.firebaseAuth.auth.signOut();
-    return this.firebaseAuth.auth.signOut;
-  }*/
 
   logoutUser(): Promise<void> {
     return firebase.auth().signOut();

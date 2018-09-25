@@ -59,13 +59,13 @@ export class UsuarioProvider {
           this.nomeUsuarioLogadoApp = retornoNomeUsuario;
         });
 
-        console.log(this.getUsuarioLogado());
+        //console.log(this.getUsuarioLogado());
       } else{
         //Se ainda não estiver logado, setamos o ID para vazio
         this.userId = '';
       }
     }))
-    console.log('Hello UsuarioProvider Provider');
+    authLogin;
   }
 
 /*
@@ -102,7 +102,7 @@ export class UsuarioProvider {
 
     const userProfile: firebase.firestore.DocumentSnapshot = await firebase.firestore().doc(this.userPathDefault + userIdFind).get();
     this.nomeUsuarioLogadoApp = userProfile.data().nomeUsuario;
-    console.log('this.nomeUsuarioLogadoApp ' + this.nomeUsuarioLogadoApp);
+
     return userProfile.data().nomeUsuario;//nomeUsuario;
   }
 

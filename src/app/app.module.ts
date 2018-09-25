@@ -1,7 +1,9 @@
+import { NewsDetailPageModule } from './../pages/news-detail/news-detail.module';
 import { SaveImageFirebase } from './../providers/util/saveImageFirebase';
 import { ToastService } from './../providers/util/toast.service';
 import { LogoutAppPage } from './../pages/logout-app/logout-app';
 import { Camera } from '@ionic-native/camera';
+import { BaseService } from '../providers/util/base.service';
 import { AddNewsPage } from '../pages/add-news/add-news';
 import { CameraProvider } from '../providers/util/camera.provider';
 //import { CardIO } from '@ionic-native/card-io';
@@ -32,6 +34,7 @@ import { NewsProvider } from '../providers/news/news';
 import { NewsPage } from '../pages/news/news';
 import { MenuAppPage } from '../pages/menu-app/menu-app';
 import { AppState } from './app.global';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 //import { Camera } from '@ionic-native/camera';
 
@@ -63,7 +66,9 @@ import { AppState } from './app.global';
     AngularFireAuthModule,
 
     // Configuração do serviço de banco de dados do firebase
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    NewsDetailPageModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -90,7 +95,8 @@ import { AppState } from './app.global';
     Camera,
     CameraProvider,
     ToastService,
-    SaveImageFirebase
+    SaveImageFirebase,
+    BaseService
     //,Camera, CardIO
   ]
 })

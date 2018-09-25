@@ -40,25 +40,28 @@ export class NewsProvider {
     console.log('Hello NewsProvider Provider');
   }
 
-  findNewsAtivas(){
+  async findNewsAtivas(){
 
     return this.angFireStore.collection<News>(this.idEntidadeNews, ref => {
       return ref.where('dataValidade', '>=', new Date());
     }).snapshotChanges().map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as News;
+
         const id = a.payload.doc.id;
         return {id, ...data};
       })
     })
   }
 
-  addNews(newsAdd: News){
-    //new DateTime.fromMillisecondsSinceEpoch(
-      newsAdd.dataNovidade = new Date(newsAdd.dataNovidade);
-      newsAdd.dataValidade = new Date(newsAdd.dataValidade);
+  async addNews(newsAdd: News){
+      var dataAdd = new Date(newsAdd.dataNovidade);
+      var dataEnd = new Date(newsAdd.dataValidade);
 
-    return this.newsCollection.add(newsAdd);
+      newsAdd.dataNovidade = new Date(dataAdd.getUTCFullYear(), dataAdd.getUTCMonth(), dataAdd.getUTCDate());//new Date(dataAdd);
+      newsAdd.dataValidade = new Date(dataEnd.getUTCFullYear(), dataEnd.getUTCMonth(), dataEnd.getUTCDate(), 23, 59, 59);//new Date(dataEnd);
+
+      return this.newsCollection.add(newsAdd);
   }
 
   updateNews(newsUpd: News){

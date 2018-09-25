@@ -1,3 +1,4 @@
+import { Camera } from '@ionic-native/camera';
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { AddNewsPage } from './add-news';
@@ -6,6 +7,7 @@ import { AddNewsPage } from './add-news';
   declarations: [
     AddNewsPage,
   ],
+
   imports: [
     IonicPageModule.forChild(AddNewsPage),
   ]

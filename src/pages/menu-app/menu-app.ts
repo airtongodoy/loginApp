@@ -115,7 +115,7 @@ export class MenuAppPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MenuAppPage');
+    //console.log('ionViewDidLoad MenuAppPage');
   }
 
 }

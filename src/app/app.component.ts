@@ -1,11 +1,12 @@
 import { MenuAppPage } from './../pages/menu-app/menu-app';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Platform, LoadingController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginAppPage } from '../pages/login-app/login-app';
+import * as firebase from 'firebase';
 
 
 @Component({
@@ -14,8 +15,16 @@ import { LoginAppPage } from '../pages/login-app/login-app';
 export class MyApp {
 
   rootPage:any = LoginAppPage;
+  db: firebase.firestore.Firestore;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, afAuth: AngularFireAuth) {
+
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen,
+              afAuth: AngularFireAuth,
+              public loadingCtrl: LoadingController) {
+
+                //var db = firebase.firestore();
 
     //No inicio da aplicação vamos verificar se existe "Sessão Ativa de Login anterior"
     platform.ready().then((readySource) => {
@@ -31,5 +40,12 @@ export class MyApp {
             statusBar.styleDefault();
             splashScreen.hide();
     });
+
+    const LOADING = this.loadingCtrl.create({
+      cssClass: 'transparent',
+    });
+
   }
+
+
 }

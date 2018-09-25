@@ -1,6 +1,6 @@
-page-news {
+page-news-detail {
 
-  .newsBg {
+  .newsBgDetail {
 
     background-image: url('../../assets/imgs/news_bg.jpg');
     background-repeat: no-repeat;
@@ -18,7 +18,9 @@ page-news {
   }
 
   .toolbar-background {
-    background: rgba(16, 22, 7, 0.61);
+    background: rgba(158, 247, 25, 0.61);
+    color: white;
+    text-shadow: 18px 12px 14px 1px black;
   }
 
   ion-navbar.toolbar {
@@ -26,20 +28,21 @@ page-news {
 
   }
 
- .toolbar-title-md {
-    color: rgb(222, 236, 227)!important;
-  }
-
   .tabs-md .tab-button{
     min-height: 2.0rem!important;
     margin-bottom: -1px;
+    color: aqua;
   }
 
-  ion-loading.my-loading-class {
-    .loading-wrapper {
-      background: transparent;
-      box-shadow: none;
-    }
+  .fontColorDetail {
+    color: beige;
+    text-shadow: 18px 12px 14px 1px black;
+    /* box-shadow: 0 0 0px black; */
   }
 
+  .fontDateStyle {
+    font-variant-caps: all-petite-caps;
+    font-family: monospace;
+    font-style: oblique;
+  }
 }

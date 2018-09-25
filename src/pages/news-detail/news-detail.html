@@ -1,22 +1,18 @@
 <ion-header>
     <ion-navbar >
-      <ion-buttons left>
-        <button ion-button icon-only menuToggle="left" color="light">
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      </ion-buttons>
-      <ion-title class="fontColor">Novidades</ion-title>
-      <ion-buttons right>
-        <button ion-button icon-only menuToggle="right" color="light">
-          <ion-icon name="menu"></ion-icon>
-        </button>
-      </ion-buttons>
+
+      <ion-title class="fontColorDetail" *ngIf="newsToDetail;then tituloNovidade else tituloDefault"></ion-title>
+      <ng-template #tituloNovidade>{{newsToDetail.titulo}}</ng-template>
+      <ng-template #tituloDefault>ops...</ng-template>
+
     </ion-navbar>
   </ion-header>
 
-<ion-content padding class="newsBg">
+<ion-content padding class="newsBgDetail">
 
-
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 <!--     <ion-list *ngFor="let novidade of newsExistentes | async">
       <ion-item>
           <ion-thumbnail item-start>
@@ -43,17 +39,17 @@
 
   </ion-grid> -->
 
-    <ion-card *ngFor="let novidade of newsExistentes | async">
-        <img width="150" height="150" [src]="novidade.urlImagem || defaultImage"/>
+    <ion-card *ngIf="newsToDetail" >
+        <img width="150" height="150" src="{{newsToDetail.urlImagem}}"/>
         <ion-card-content>
-          <ion-card-title>
-              <h2>{{ novidade.titulo }}
-              </h2>
-            </ion-card-title>
           <p>
-              {{ (novidade.conteudo?.length>30)? (novidade.conteudo | slice:0:30)+'..':(novidade.conteudo) }}...
+              {{ newsToDetail.conteudo }}
           </p>
-          <button clear (click)="openNewsDetails(novidade)">Ver mais...</button>
+          <p class="fontDateStyle">
+              Data criação: {{ newsToDetail.dataNovidade.toDate() | date:'dd-MM-yyyy'}}
+          </p>
+          <p class="fontDateStyle">Expira em: {{newsToDetail.dataValidade.toDate() | date:'dd-MM-yyyy'}} </p>
+
         </ion-card-content>
       </ion-card>
 
