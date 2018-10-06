@@ -1,7 +1,8 @@
+import { AboutPage } from './../about/about';
 import { NewsPage } from './../news/news';
 import { Component } from '@angular/core';
 
-import { AboutPage } from '../about/about';
+
 import { ContactPage } from '../contact/contact';
 
 @Component({

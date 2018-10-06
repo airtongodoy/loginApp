@@ -1,10 +1,17 @@
 <ion-header>
+    <ion-toolbar>
+      <ion-title>
+          Adicionar Novidades
+      </ion-title>
 
-  <ion-navbar>
-    <ion-title>Adicionar Novidades</ion-title>
-  </ion-navbar>
-</ion-header>
+      <ion-buttons start>
+        <button ion-button (click)="dismiss()">
+          <span ion-text color="primary" >Sair</span>
+        </button>
+      </ion-buttons>
 
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content padding>
 
@@ -12,6 +19,22 @@
       <ion-card>
 
       <ion-card-content>
+          <div class="gallery-button" text-center novalidate>
+
+
+
+              <ion-item>
+                  <ion-fab top right class="cameraIcoFab">
+                      <button ion-fab mini  (click)="escolherFoto('CAMERA')" ><ion-icon name="md-camera"></ion-icon></button>
+                  </ion-fab>
+                  <ion-fab top right color="light" class="fotoIcoFab">
+                      <button ion-fab mini color="secondary" (click)="escolherFoto('LIBARY')" ><ion-icon name="md-image"></ion-icon></button>
+                  </ion-fab>
+                <img *ngIf="imageSrc"  [(src)]="imageSrc"/>
+              </ion-item>
+
+          </div>
+          <hr>
 
         <ion-item>
           <ion-label floating>Título</ion-label>
@@ -28,55 +51,35 @@
           <ion-label floating>Conteúdo</ion-label>
           <ion-textarea formControlName="conteudo" [(ngModel)]="newsCadastrando.conteudo" rows="5" name="conteudo" maxLength="500" ></ion-textarea>
         </ion-item>
-        <ion-item *ngIf="conteudo.hasError('required') && titulo.touched">
+        <ion-item *ngIf="conteudo.hasError('required') && conteudo.touched">
             <p class="erroValidacao">Conteúdo deve ser informado!</p>
           </ion-item>
-          <ion-item *ngIf="conteudo.hasError('minlength')  && titulo.updateOn">
+          <ion-item *ngIf="conteudo.hasError('minlength')  && conteudo.updateOn">
               <p class="erroValidacao">Título deve ter no mínimo 25 caracteres!</p>
           </ion-item>
 
         <ion-item>
             <ion-label floating>Data Referência</ion-label>
-            <ion-datetime formControlName="dataNovidade" displayFormat="DD/MM/YYYY" [(ngModel)]="newsCadastrando.dataNovidade" name="dataNovidade" ></ion-datetime>
+            <ion-datetime formControlName="dataNovidade" displayFormat="DD/MM/YYYY" cancelText="Cancelar" doneText="Confirmar" [(ngModel)]="newsCadastrando.dataNovidade" name="dataNovidade" ></ion-datetime>
           </ion-item>
 
           <ion-item>
             <ion-label floating>Validade</ion-label>
-            <ion-datetime formControlName="dataValidade" displayFormat="DD/MM/YYYY" [(ngModel)]="newsCadastrando.dataValidade" name="dataValidade" ></ion-datetime>
+            <ion-datetime formControlName="dataValidade" displayFormat="DD/MM/YYYY" start cancelText="Cancelar" doneText="Confirmar" [(ngModel)]="newsCadastrando.dataValidade" name="dataValidade" ></ion-datetime>
+          </ion-item>
+          <ion-item *ngIf="dataVeriry">
+              <p class="erroValidacao">Data de validade inválida!</p>
           </ion-item>
 
           <hr>
-          <div class="gallery-button" text-center novalidate>
-              <ion-item>
-                <img *ngIf="imageSrc"  [(src)]="imageSrc"/>
-              </ion-item>
 
-              <ion-item>
-                  <ion-row>
-                    <ion-col width-50>
-                        <button ion-button color="danger" type="button" full round large (click)="escolherFoto('CAMERA')">
-                            <ion-icon name="md-camera"></ion-icon>
-                        </button>
-                    </ion-col>
-                    <ion-col width-50>
-                        <button ion-button color="secondary" type="button" full round large (click)="escolherFoto('LIBARY')">
-                            <ion-icon name="md-image"></ion-icon>
-                        </button>
-                    </ion-col>
-                  </ion-row>
-              </ion-item>
-              <hr>
-              <div padding text-center>
-                  <button ion-button round color="light" icon-right>
-                    Salvar<ion-icon name="cloud-upload"></ion-icon>
-                  </button>
-              </div>
+          <div padding text-center>
+              <button ion-button round color="light" icon-right>
+                Salvar<ion-icon name="cloud-upload"></ion-icon>
+              </button>
           </div>
-
       </ion-card-content>
     </ion-card>
     </form>
-
-
 
 </ion-content>

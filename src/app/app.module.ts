@@ -1,8 +1,12 @@
+import { NewsEditPageModule } from './../pages/news-edit/news-edit.module';
+import { RefresherService } from './../providers/util/refresher.service';
 import { NewsDetailPageModule } from './../pages/news-detail/news-detail.module';
-import { SaveImageFirebase } from './../providers/util/saveImageFirebase';
+
 import { ToastService } from './../providers/util/toast.service';
 import { LogoutAppPage } from './../pages/logout-app/logout-app';
 import { Camera } from '@ionic-native/camera';
+import { ListNewsToEditPageModule } from '../pages/list-news-to-edit/list-news-to-edit.module';
+import { SaveDeleteImageFirebase } from '../providers/util/saveDeleteImagemFirebase';
 import { BaseService } from '../providers/util/base.service';
 import { AddNewsPage } from '../pages/add-news/add-news';
 import { CameraProvider } from '../providers/util/camera.provider';
@@ -27,14 +31,14 @@ import { AuthLoginProvider } from '../providers/auth-login/auth-login';
 // Configurações do FIREBASE
 import { configFirebase } from '../configFirebase';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import { UsuarioProvider } from '../providers/usuario/usuario';
 import { AngularFirestore, AngularFirestoreModule } from 'angularfire2/firestore';
+
+import { UsuarioProvider } from '../providers/usuario/usuario';
 import { LoginAppPage } from '../pages/login-app/login-app';
 import { NewsProvider } from '../providers/news/news';
 import { NewsPage } from '../pages/news/news';
 import { MenuAppPage } from '../pages/menu-app/menu-app';
 import { AppState } from './app.global';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 //import { Camera } from '@ionic-native/camera';
 
@@ -68,7 +72,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     // Configuração do serviço de banco de dados do firebase
     AngularFirestoreModule,
     NewsDetailPageModule,
-    AngularFireDatabaseModule
+    NewsEditPageModule,
+    ListNewsToEditPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -95,8 +100,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     Camera,
     CameraProvider,
     ToastService,
-    SaveImageFirebase,
-    BaseService
+    SaveDeleteImageFirebase,
+    BaseService,
+    RefresherService
     //,Camera, CardIO
   ]
 })

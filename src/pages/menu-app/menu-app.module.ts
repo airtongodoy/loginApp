@@ -9,6 +9,7 @@ import { MenuAppPage } from './menu-app';
   imports: [
 
     IonicPageModule.forChild(MenuAppPage)
+
   ],
   entryComponents: [
 

@@ -1,0 +1,70 @@
+<!--
+  Generated template for the NewsEditPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Alterando</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content  class="newsBg">
+    <form [formGroup]="todoForm" (submit)="onSubmit(newsUpdating)" class="form-margin">
+        <ion-card *ngIf="newsUpdating">
+            <ion-card-content>
+                <img  src="{{newsUpdating.urlImagem}}"/>
+                <hr>
+                <ion-grid>
+                    <ion-row>
+                      <ion-col col-8>
+                          <ion-label stacked>Inicio</ion-label>
+                          <ion-label stacked class="colorDisable">{{newsUpdating.dataNovidade.toDate() | date:'dd/MM/yyyy'}}</ion-label>
+                      </ion-col>
+                      <ion-col col-4>
+                          <ion-label stacked>Validade</ion-label>
+                          <ion-label stacked class="colorDisable">{{newsUpdating.dataValidade?.toDate() | date:'dd/MM/yyyy'}}</ion-label>
+                      </ion-col>
+                  </ion-row>
+                </ion-grid>
+
+              <ion-item>
+                <ion-label floating>Título</ion-label>
+                <ion-input formControlName="titulo" [(ngModel)]="newsUpdating.titulo" name="titulo" maxlength="50"></ion-input>
+              </ion-item>
+              <ion-item *ngIf="titulo.hasError('required') && titulo.touched">
+                <p class="erroValidacao">Título deve ser informado!</p>
+              </ion-item>
+              <ion-item *ngIf="titulo.hasError('minlength')  && titulo.updateOn">
+                  <p class="erroValidacao">Título deve ter no mínimo 5 caracteres!</p>
+              </ion-item>
+
+              <ion-item>
+                <ion-label floating>Conteúdo</ion-label>
+                <ion-textarea formControlName="conteudo" [(ngModel)]="newsUpdating.conteudo" rows="5" name="conteudo" maxLength="500" ></ion-textarea>
+              </ion-item>
+              <ion-item *ngIf="conteudo.hasError('required') && conteudo.touched">
+                  <p class="erroValidacao">Conteúdo deve ser informado!</p>
+                </ion-item>
+                <ion-item *ngIf="conteudo.hasError('minlength')  && conteudo.updateOn">
+                    <p class="erroValidacao">Título deve ter no mínimo 25 caracteres!</p>
+                </ion-item>
+                <hr>
+                <div padding text-center>
+                    <button ion-button round color="danger" icon-left>
+                      <ion-icon name="MYICON" start>
+                          Salvar
+                      </ion-icon>
+                    </button>
+                </div>
+            </ion-card-content>
+
+
+          </ion-card>
+
+      </form>
+
+  </ion-content>

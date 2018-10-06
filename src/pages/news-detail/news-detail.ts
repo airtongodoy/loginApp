@@ -16,7 +16,7 @@ import { News } from '../../models/news';
 })
 export class NewsDetailPage {
 
-  newsToDetail: News;
+  public newsToDetail: News;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

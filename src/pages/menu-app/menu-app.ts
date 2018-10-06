@@ -1,3 +1,4 @@
+import { ListNewsToEditPage } from './../list-news-to-edit/list-news-to-edit';
 import { HomePage } from './../home/home';
 import { Component, ViewChild } from '@angular/core';
 //import { NavController, NavParams, MenuController } from 'ionic-angular';
@@ -12,6 +13,7 @@ import { Page } from 'ionic-angular/umd/navigation/nav-util';
 
 import { LogoutAppPage } from '../logout-app/logout-app';
 import { AddNewsPage } from '../add-news/add-news';
+
 
 /**
  * Generated class for the MenuAppPage page.
@@ -54,14 +56,14 @@ export class MenuAppPage {
     this.initializeApp();
 
     this.rightMenuItems = [
-      {id:1,  icon: 'home',       active: true,  component: HomePage},
-      {id:2,  icon: 'alarm',      active: false, component: HomePage},
-      {id:3,  icon: 'analytics',  active: false, component: HomePage},
-      {id:4,  icon: 'archive',    active: false, component: HomePage},
-      {id:5,  icon: 'basket',     active: false, component: HomePage},
-      {id:6,  icon: 'body',       active: false, component: HomePage},
-      {id:7,  icon: 'bookmarks',  active: false, component: HomePage},
-      {id:8,  icon: 'camera',     active: false, component: AddNewsPage},
+      {id:1,  icon: 'camera',     active: false, component: AddNewsPage},
+      {id:2,  icon: 'home',       active: true,  component: ListNewsToEditPage},
+      {id:3,  icon: 'alarm',      active: false, component: HomePage},
+      {id:4,  icon: 'analytics',  active: false, component: HomePage},
+      {id:5,  icon: 'archive',    active: false, component: HomePage},
+      {id:6,  icon: 'basket',     active: false, component: HomePage},
+      {id:7,  icon: 'body',       active: false, component: HomePage},
+      {id:8,  icon: 'bookmarks',  active: false, component: HomePage},
       {id:9,  icon: 'beer',       active: false, component: HomePage},
       {id:10, icon: 'power',      active: false, component: LogoutAppPage},
     ];
@@ -106,8 +108,6 @@ export class MenuAppPage {
   rightMenuClick(item) {
     this.rightMenuItems.map(menuItem => menuItem.active = false);
     item.active = true;
-
-    //item.actionExecute;
 
     this.nav.push(item.component);
     this.activePage.next(item.component);

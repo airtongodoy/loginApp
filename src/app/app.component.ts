@@ -41,9 +41,9 @@ export class MyApp {
             splashScreen.hide();
     });
 
-    const LOADING = this.loadingCtrl.create({
+    /* const LOADING = this.loadingCtrl.create({
       cssClass: 'transparent',
-    });
+    }); */
 
   }
 

@@ -7,5 +7,7 @@ export interface News {
   dataNovidade: Date,
   usuarioCriacao: Usuario,
   dataValidade: Date,
-  urlImagem: string
+  urlImagem: string,
+  imageUid: string,
+  status: number
 }

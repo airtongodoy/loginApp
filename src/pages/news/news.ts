@@ -57,6 +57,7 @@ export class NewsPage {
         this.carregando.dismiss();
 
       }, 1000);
+
       //
     });
   }

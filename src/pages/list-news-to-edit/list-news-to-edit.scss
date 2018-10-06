@@ -1,0 +1,36 @@
+page-list-news-to-edit {
+  .item-md h2 {
+    margin: 0 0;
+    font-size: 1.3rem;
+    font-weight: normal;
+  }
+
+  [padding] h1:first-child,
+  [padding] h2:first-child,
+  [padding] h3:first-child,
+  [padding] h4:first-child,
+  [padding] h5:first-child,
+  [padding] h6:first-child {
+    margin-top: -0.1rem;
+  }
+
+  .list-md {
+    margin: -10px -10px -10px -10px;
+  }
+
+  /* .toolbar-background {
+    background: rgba(7, 10, 22, 0.619);
+  } */
+
+ .toolbar-md  {
+    color: rgb(222, 236, 227)!important;
+    min-height: 2.0rem!important;
+    margin-bottom: -1px;
+  }
+
+  .tabs-md .tab-button{
+    min-height: 2.0rem!important;
+    margin-bottom: -1px;
+  }
+
+}

@@ -1,0 +1,89 @@
+page-news-edit {
+  .item-md h2 {
+    margin: 0 0;
+    font-size: 1.3rem;
+    font-weight: normal;
+  }
+
+  .card-content-md {
+    padding: 9px 6px;
+    background: rgba(143, 160, 208, 0.43);
+  }
+  .input-cover {
+    background: rgba(255, 255, 255, 0.43);
+    border: white;
+    border-style: inset;
+  }
+  .newsBg {
+
+    //background-image: url('../../assets/imgs/news_bg.jpg');
+    background: rgba(143, 160, 208, 0.43)!important;
+    background-repeat: no-repeat;
+    background-size:cover;
+  //  ## Heading
+  }
+
+  [padding] h1:first-child,
+  [padding] h2:first-child,
+  [padding] h3:first-child,
+  [padding] h4:first-child,
+  [padding] h5:first-child,
+  [padding] h6:first-child {
+    margin-top: -0.1rem;
+  }
+
+  .list-md {
+    margin: -10px -10px -10px -10px;
+  }
+
+  /* .toolbar-background {
+    background: rgba(7, 10, 22, 0.619);
+  } */
+
+  .ion-md-arrow-back{
+    color: rgb(222, 236, 227)!important;
+  }
+  .form-margin {
+    margin: 6px -10px -8px -11px !important
+}
+ .toolbar-md  {
+    color: rgb(222, 236, 227)!important;
+    min-height: 2.0rem!important;
+    margin-bottom: -1px;
+  }
+
+  .tabs-md .tab-button{
+    min-height: 2.0rem!important;
+    margin-bottom: -1px;
+  }
+  ion-navbar.toolbar {
+    background: rgba(7, 10, 22, 0.619);
+  }
+  .toolbar-background {
+    background: rgba(7, 10, 22, 0.619);
+  }
+
+ .toolbar-title-md  {
+    color: rgb(222, 236, 227)!important;
+  }
+  .colorDisable {
+    color: #ce3e3e;
+    margin: -3px 1px 1px 3px;
+  }
+
+  .ion-ios-MYICON,
+  .ion-ios-MYICON-outline,
+  .ion-md-MYICON {
+    content: url(../../assets/icon/save.ico);
+    // width: 32px;
+    // height: 32px;
+    padding: 1px 1px 1px 1px;
+    margin: 1px;
+  }
+
+  .button-round-md {
+    border-radius: 50%;
+    padding: 0 0.9rem;
+}
+
+}

@@ -15,7 +15,7 @@ export class CameraProvider {
     /* /this.cameraApp = this.camApp;*/
   }
 
-  async tirarFoto():Promise<string> {
+  tirarFoto() {
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -26,7 +26,8 @@ export class CameraProvider {
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
-      this.myPhoto = 'data:image/jpeg;base64,' + imageData;
+      this.myPhoto = imageData;
+      return imageData;
 
      }, (err) => {
       // Handle error
@@ -35,7 +36,7 @@ export class CameraProvider {
      return this.myPhoto;
   }
 
-  escolherFoto(xpto) {
+  escolherFotoX(xpto) {
     const options: CameraOptions = {
       quality: 100,
       sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
@@ -48,13 +49,42 @@ export class CameraProvider {
       // imageData is either a base64 encoded string or a file URI
       // If it's base64 (DATA_URL):
       this.myPhoto = 'data:image/jpeg;base64,' + imageData;
-      xpto = this.myPhoto;
+      return this.myPhoto;
 
      }, (err) => {
       // Handle error
      });
      return this.myPhoto;
   }
+
+  escolherFoto(sourceTypeCam) {
+    var typePhotoOrigin = (sourceTypeCam == 'CAMERA' ? this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.PHOTOLIBRARY);
+
+    const options: CameraOptions = {
+      quality: 45,
+      correctOrientation: true,
+      saveToPhotoAlbum: true,
+      allowEdit: true,
+      targetWidth: 500,
+      targetHeight: 500,
+      sourceType: typePhotoOrigin,
+
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE
+    }
+
+    return this.camera.getPicture(options).then((imageData) => {
+      // imageData is either a base64 encoded string or a file URI
+      // If it's base64 (DATA_URL):
+      this.imageSrc = 'data:image/jpeg;base64,' + imageData;
+      return imageData;
+
+     }, (err) => {
+      // Handle error
+     });
+  }
+
 /*
   takePhoto():string {
      Camera.getPicture({

@@ -5,4 +5,51 @@ page-add-news {
     /* text-overflow: inherit; */
     color: #f00;
   }
+
+
+  .fotoIcoFab {
+    right: -5px!important;
+    top: -8px!important;
+    right: calc(10px + constant(safe-area-inset-right));
+    right: calc(10px + env(safe-area-inset-right));
+  }
+  .cameraIcoFab {
+    right: 40px!important;
+    top: -8px!important;
+    right: calc(10px + constant(safe-area-inset-right));
+    right: calc(10px + env(safe-area-inset-right));
+  }
+
+  /* ion-app.md [padding] .scroll-content {
+    padding: 16px;
+    background: aliceblue;
+  }
+
+  .card-content-md {
+    padding: 5px 5px;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    background: left;
+  }
+
+  .item-md {
+    padding-left: 10px;
+    background-color: #ffffff;
+  } */
+
+  .toolbar-background {
+    /* background: rgba(7, 10, 22, 0.619); */
+  }
+
+  .toolbar-md  {
+    color: rgb(222, 236, 227)!important;
+    min-height: 2.0rem!important;
+    margin-bottom: -1px;
+  }
+
+  .tabs-md .tab-button{
+    min-height: 2.0rem!important;
+    margin-bottom: -1px;
+  }
+
 }

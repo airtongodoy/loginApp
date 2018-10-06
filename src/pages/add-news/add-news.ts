@@ -1,13 +1,12 @@
-import { MenuAppPage } from './../menu-app/menu-app';
+import { RefresherService } from './../../providers/util/refresher.service';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
 import { NewsProvider } from '../../providers/news/news';
 import { News } from '../../models/news';
-import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { ToastService } from '../../providers/util/toast.service';
-import { SaveImageFirebase } from '../../providers/util/saveImageFirebase';
-import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl, AsyncValidatorFn } from '@angular/forms';
+import { SaveDeleteImageFirebase } from '../../providers/util/saveDeleteImagemFirebase';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import 'rxjs/add/operator/map';
 
 /**
@@ -39,21 +38,24 @@ export class AddNewsPage {
   public dataNovidade: AbstractControl;
   public dataValidade: AbstractControl;
 
+  public dataVeriry = false;
 
   constructor(public navParams: NavParams,
               public navCtrl: NavController,
               private newsProvider: NewsProvider,
               private formBuilder: FormBuilder ,
               private mensagemToast: ToastService,
-              private saveImage: SaveImageFirebase,
-              private cam: Camera) {
+              private saveImage: SaveDeleteImageFirebase,
+              private cam: Camera,
+              private mensagemCarregando: RefresherService,
+              public viewCtrl: ViewController) {
 
       this.todoForm = this.formBuilder.group({
         titulo:         new FormControl('', {validators: [Validators.maxLength(50),Validators.minLength(5),Validators.required], updateOn: 'blur'}),
         conteudo:       new FormControl('', {validators: [Validators.maxLength(500),Validators.minLength(25),Validators.required], updateOn: 'blur'}),
-        dataNovidade:   new FormControl('', Validators.required, this.verificaDataMenor(this.newsCadastrando.dataNovidade,this.newsCadastrando.dataValidade, 'Data Novidade')),
+        dataNovidade:   new FormControl('', Validators.required),
         usuarioCriacao: new FormControl(['', Validators.required]),
-        dataValidade:   new FormControl(['', Validators.required])
+        dataValidade:   new FormControl('', {validators: [Validators.required], updateOn: 'blur'})
       });
 
       this.titulo = this.todoForm.controls['titulo'];
@@ -64,44 +66,43 @@ export class AddNewsPage {
 
   }
 
-  verificaDataMenor(data1: Date,data2: Date, nomeData: string):AsyncValidatorFn{
-    console.log(data1);
-    console.log(data2);
-    console.log(nomeData);
-    return null;
-  }
-
-
   onSubmit(newsAdd: News): void {
     if(this.todoForm.valid) {
+      if(this.verificaDataMenor(newsAdd)){
+        this.dataVeriry = false;
+        this.mensagemCarregando.showRefresher('Salvando informações...');
         //window.localStorage.setItem('username', value.username);
         //window.localStorage.setItem('password', value.password);
-        this.adicionarNovaNews(newsAdd);
-    }else{
+        this.adicionarNovaNews(newsAdd).then(_ =>{
+          this.mensagemCarregando.finishRefresher(600);
+          this.mensagemToast.create("Novidade salva com sucesso", false, 3500);
+          this.dismiss();
+        });
+      }else{
+        this.dataVeriry = true;
+        this.mensagemToast.create("Data Validade inválida!", false, 3500);
+      }
 
+    }else{
+      //this.dataVeriry = true;
     }
 }
 
- // Método para exibir as nossas mensagens de erro.
-
+ // Método para adicionar novas novidades - Insere a imagem primeiro, pois leva mais tempo e caso de certo inserimos a novidade!
   async adicionarNovaNews(newsAdicionar: News){
 
     try {
 
-        //newsAdicionar.urlImagem = 'https://picsum.photos/200/200'; //this.imageSrc;
-        //this.imageSrc = '../../assets/imgs/background/background-1.jpg'; //this.imageSrc;
-        //this.saveImage.saveImageAndReturnPath(this.newsProvider.pathReferenceImage, this.saveImage.generateUUID() + '.jpg', this.imageSrc.slice('data:image/jpeg;base64,'.length)).then(imageSaved => {
+        return this.saveImage.saveImageAndReturnPath(this.newsProvider.pathReferenceImage, this.saveImage.generateUUID() + '.jpg', this.imageSrc2).then(imageSaved => {
 
-        this.saveImage.saveImageAndReturnPath(this.newsProvider.pathReferenceImage, this.saveImage.generateUUID() + '.jpg', this.imageSrc2).then(imageSaved => {
+           newsAdicionar.urlImagem = imageSaved.urlImagem;
+           newsAdicionar.imageUid = imageSaved.imageUid;
 
-           newsAdicionar.urlImagem = imageSaved;
            console.log('imageSaved');
            console.log(imageSaved);
 
-            this.newsProvider.addNews(newsAdicionar).then(result => {
-              // Se ocorrer tudo bem redireciona para a página tabs
-              this.navCtrl.setRoot(MenuAppPage);
-              this.mensagemToast.create("Novidade salva com sucesso", false, 3000);
+            return this.newsProvider.addNews(newsAdicionar).then(result => {
+              return;
             });
 
           });
@@ -112,16 +113,30 @@ export class AddNewsPage {
 
   }
 
-  validarCampos(){
+  verificaDataMenor(newsVerify):boolean{
 
+    newsVerify = this.newsProvider.updateDataNovidade(newsVerify);
+    console.log('newsVerify.dataNovidade > newsVerify.dataValidade');
+    console.log(newsVerify.dataNovidade > newsVerify.dataValidade);
+
+    if(newsVerify.dataNovidade > newsVerify.dataValidade){
+      return false;
+    }
+    return true;
   }
+
 
   escolherFoto(sourceTypeCam) {
     var typePhotoOrigin = (sourceTypeCam == 'CAMERA' ? this.cam.PictureSourceType.CAMERA : this.cam.PictureSourceType.PHOTOLIBRARY);
     console.log(typePhotoOrigin);
 
     const options: CameraOptions = {
-      quality: 80,
+      quality: 45,
+      correctOrientation: true,
+      saveToPhotoAlbum: true,
+      allowEdit: true,
+      targetWidth: 500,
+      targetHeight: 500,
       sourceType: typePhotoOrigin,
 
       destinationType: this.cam.DestinationType.DATA_URL,
@@ -141,9 +156,12 @@ export class AddNewsPage {
   }
 
   ionViewDidLoad() {
-    //this.hiddenSrc();
+
     console.log('ionViewDidLoad AddNewsPage');
   }
 
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
 
 }
