@@ -96,7 +96,7 @@ export class MenuAppPage {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashscreen.hide();
-      this.menuCtrl.enable(false, 'right');
+      // this.menuCtrl.enable(false, 'right');
     });
   }
 

@@ -18,11 +18,14 @@
   </div>
 
   <div [ngSwitch]="opt">
-    <form (submit)="loginUsuario(usuarioApp)" *ngSwitchCase="'signin'">
+    <form [formGroup]="loginForm" (submit)="loginUsuario(usuarioApp)" *ngSwitchCase="'signin'">
 
-          <ion-input type="email" [(ngModel)]="usuarioApp.emailUsuario" name="emailUsuario" ></ion-input>
+          <ion-input type="email" formControlName="emailUsuario" [(ngModel)]="usuarioApp.emailUsuario" name="emailUsuario" ></ion-input>
+          <p *ngIf="emailUsuario.hasError('required') && emailUsuario.touched" class="erroValidacao">E-mail deve ser informado!</p>
+          <p *ngIf="emailUsuario.hasError('pattern') && emailUsuario.touched" class="erroValidacao">E-mail inválido!</p>
 
-          <ion-input type="password" [(ngModel)]="usuarioApp.senhaAcesso" name="senhaAcesso"></ion-input>
+          <ion-input type="password" formControlName="senhaAcesso" [(ngModel)]="usuarioApp.senhaAcesso" name="senhaAcesso"></ion-input>
+          <p *ngIf="senhaAcesso.hasError('required') && senhaAcesso.touched" class="erroValidacao">Senha deve ser informada!</p>
 
         <div padding text-center>
           <button ion-button round color="light" icon-right >
@@ -32,19 +35,27 @@
 
     </form>
 
-    <form (submit)="cadastrarUsuario(usuarioApp)" *ngSwitchCase="'signup'">
+    <form [formGroup]="registerForm" (submit)="cadastrarUsuario(usuarioApp)" *ngSwitchCase="'signup'">
 
       <ion-label float>Nome</ion-label>
-          <ion-input type="text" [(ngModel)]="usuarioApp.nomeUsuario" name="nomeUsuario"></ion-input>
+          <ion-input type="text" formControlName="nomeUsuarioReg" [(ngModel)]="usuarioApp.nomeUsuario" name="nomeUsuario"></ion-input>
+          <p *ngIf="nomeUsuarioReg.hasError('required') && nomeUsuarioReg.touched" class="erroValidacao">Nome deve ser informado!</p>
 
           <ion-label float>E-mail</ion-label>
-          <ion-input type="email" [(ngModel)]="usuarioApp.emailUsuario" name="emailUsuario" ></ion-input>
+          <ion-input type="email" formControlName="emailUsuarioReg" [(ngModel)]="usuarioApp.emailUsuario" name="emailUsuario" ></ion-input>
+          <p *ngIf="emailUsuarioReg.hasError('required') && emailUsuarioReg.touched" class="erroValidacao">E-mail deve ser informado!</p>
+          <p *ngIf="emailUsuarioReg.hasError('pattern') && emailUsuarioReg.touched" class="erroValidacao">E-mail inválido!</p>
 
           <ion-label float>Senha</ion-label>
-          <ion-input type="password" [(ngModel)]="usuarioApp.senhaAcesso" name="senhaAcesso"></ion-input>
+          <ion-input type="password" formControlName="senhaAcessoReg" [(ngModel)]="usuarioApp.senhaAcesso" name="senhaAcesso"></ion-input>
+          <p *ngIf="senhaAcessoReg.hasError('required') && senhaAcessoReg.touched" class="erroValidacao">Senha deve ser informada!</p>
+          <p *ngIf="senhaAcessoReg.hasError('minLength') && senhaAcessoReg.touched" class="erroValidacao">Senha deve ter 6 caracteres!</p>
 
           <ion-label float>Senha novamente</ion-label>
-          <ion-input type="password" name="senhaAcessoConfirmacao"></ion-input>
+          <ion-input type="password" formControlName="senhaAcessoConfirmacaoReg" name="senhaAcessoConfirmacao"></ion-input>
+          <p *ngIf="senhaAcessoConfirmacaoReg.hasError('required')  && senhaAcessoConfirmacaoReg.touched" class="erroValidacao">Confirmação da Senha deve ser informada!</p>
+          <p *ngIf="senhaAcessoConfirmacaoReg.hasError('equalto')   && senhaAcessoConfirmacaoReg.touched" class="erroValidacao">Confirmação deve ser igual a senha!</p>
+          <p *ngIf="senhaAcessoConfirmacaoReg.hasError('minLength') && senhaAcessoConfirmacaoReg.touched" class="erroValidacao">Confirmação de Senha deve ter 6 caracteres!</p>
 
         <div padding text-center>
           <button ion-button round color="light" icon-right>

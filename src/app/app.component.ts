@@ -14,7 +14,7 @@ import * as firebase from 'firebase';
 })
 export class MyApp {
 
-  rootPage:any = LoginAppPage;
+  rootPage:any = MenuAppPage;
   db: firebase.firestore.Firestore;
 
 

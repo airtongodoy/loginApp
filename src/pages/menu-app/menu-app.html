@@ -2,12 +2,14 @@
 
     <!--Right side menu-->
     <ion-menu side="right" type="push" [content]="content" id="menu-right">
+            <img src="../../assets/icon/save.ico" class="button button-icon button-clear" menu-toggle="right">
       <ion-content>
         <div class="menu-header">
           <!--material-design-background-->
-          <img class="user-avatar round" style="height:3.1em;max-width:3.1em;" src="../../assets/imgs/admin.png"/>
+          <img class="user-avatar round" style="height:3.2em;max-width:3.2em;" src="../../assets/imgs/admin.png"/>
         </div>
         <ion-list no-lines>
+
           <button menuClose icon-only ion-item detail-none (click)="rightMenuClick(item)" *ngFor="let item of rightMenuItems; let i = index">
             <div *ngIf="item.active" class="active-menu-item"></div>
             <ion-icon [name]="item.icon"></ion-icon>
@@ -15,7 +17,6 @@
         </ion-list>
       </ion-content>
     </ion-menu>
-
 
     <!--Material Design Menu-->
     <ion-menu [content]="content" id="menu-material">
