@@ -1,3 +1,4 @@
+import { MapsLocalPage } from './../pages/maps-local/maps-local';
 import { NewsEditPageModule } from './../pages/news-edit/news-edit.module';
 import { RefresherService } from './../providers/util/refresher.service';
 import { NewsDetailPageModule } from './../pages/news-detail/news-detail.module';
@@ -40,7 +41,9 @@ import { NewsPage } from '../pages/news/news';
 import { MenuAppPage } from '../pages/menu-app/menu-app';
 import { AppState } from './app.global';
 
-//import { Camera } from '@ionic-native/camera';
+import { Geolocation } from '@ionic-native/geolocation';
+import { LocalAtualMapPage } from '../pages/local-atual-map/local-atual-map';
+import { TestMapPage } from '../pages/test-map/test-map';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { AppState } from './app.global';
     LoginAppPage,
     MenuAppPage,
     LogoutAppPage,
-    AddNewsPage
+    AddNewsPage,
+    MapsLocalPage,
+    LocalAtualMapPage,
+    TestMapPage
 
   ],
   imports: [
@@ -86,7 +92,10 @@ import { AppState } from './app.global';
     LoginAppPage,
     MenuAppPage,
     LogoutAppPage,
-    AddNewsPage
+    AddNewsPage,
+    MapsLocalPage,
+    LocalAtualMapPage,
+    TestMapPage
   ],
   providers: [
     StatusBar,
@@ -102,8 +111,9 @@ import { AppState } from './app.global';
     ToastService,
     SaveDeleteImageFirebase,
     BaseService,
-    RefresherService
-    //,Camera, CardIO
+    RefresherService,
+    Geolocation
+
   ]
 })
 export class AppModule {}

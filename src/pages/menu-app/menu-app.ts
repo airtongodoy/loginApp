@@ -1,3 +1,5 @@
+import { LocalAtualMapPage } from './../local-atual-map/local-atual-map';
+import { MapsLocalPage } from './../maps-local/maps-local';
 import { ListNewsToEditPage } from './../list-news-to-edit/list-news-to-edit';
 import { HomePage } from './../home/home';
 import { Component, ViewChild } from '@angular/core';
@@ -13,6 +15,7 @@ import { Page } from 'ionic-angular/umd/navigation/nav-util';
 
 import { LogoutAppPage } from '../logout-app/logout-app';
 import { AddNewsPage } from '../add-news/add-news';
+import { TestMapPage } from '../test-map/test-map';
 
 
 /**
@@ -58,9 +61,9 @@ export class MenuAppPage {
     this.rightMenuItems = [
       {id:1,  icon: 'camera',     active: false, component: AddNewsPage},
       {id:2,  icon: 'home',       active: true,  component: ListNewsToEditPage},
-      {id:3,  icon: 'alarm',      active: false, component: HomePage},
-      {id:4,  icon: 'analytics',  active: false, component: HomePage},
-      {id:5,  icon: 'archive',    active: false, component: HomePage},
+      {id:3,  icon: 'globe',      active: false, component: MapsLocalPage},
+      {id:4,  icon: 'pin',        active: false, component: LocalAtualMapPage},
+      {id:5,  icon: 'archive',    active: false, component: TestMapPage},
       {id:6,  icon: 'basket',     active: false, component: HomePage},
       {id:7,  icon: 'body',       active: false, component: HomePage},
       {id:8,  icon: 'bookmarks',  active: false, component: HomePage},
@@ -69,11 +72,11 @@ export class MenuAppPage {
     ];
 
     this.pages = [
-      {id:1,   title: 'Home',        component: HomePage,     active: true,  icon: 'home' },
-      {id:2,   title: 'My Address',  component: HomePage,     active: false, icon: 'map' },
-      {id:3,   title: 'My Orders',   component: HomePage,     active: false, icon: 'ionic' },
-      {id:4,   title: 'My Cart',     component: HomePage,     active: false, icon: 'ionic' },
-      {id:5,   title: 'Login',       component: HomePage,     active: false, icon: 'archive' },
+      {id:1,   title: 'Home',        component: HomePage,           active: true,  icon: 'home' },
+      {id:2,   title: 'My Address',  component: HomePage,           active: false, icon: 'map' },
+      {id:3,   title: 'Mapa',        component: MapsLocalPage,      active: false, icon: 'globe' },
+      {id:4,   title: 'Localização', component: LocalAtualMapPage,  active: false, icon: 'pin' },
+      {id:5,   title: 'Login',       component: TestMapPage,           active: false, icon: 'archive' },
       {id:6,   title: 'Offer Zone',  component: HomePage,     active: false, icon: 'body' },
       {id:7,   title: 'Need Help',   component: HomePage,     active: false, icon: 'bookmarks' },
       {id:8,   title: 'Rate Us',     component: HomePage,     active: false, icon: 'book' },

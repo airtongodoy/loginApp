@@ -7,7 +7,6 @@ import { News } from '../../models/news';
 import { NewsProvider } from '../../providers/news/news';
 import { NewsEditPage } from '../news-edit/news-edit';
 import { AddNewsPage } from '../add-news/add-news';
-import { NewsDetailPage } from '../news-detail/news-detail';
 
 /**
  * Generated class for the ListNewsToEditPage page.
