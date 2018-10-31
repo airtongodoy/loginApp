@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 
 /**
@@ -43,15 +43,6 @@ export class MapsLocalPage {
 
   ionViewDidLoad() {
 
-
-    let watch = this.geo.watchPosition();
-
-    const mapOptions = {
-      zoom: 18,
-      center: this.position,
-      disableDefaultUI: true
-    }
-
     this.geo.getCurrentPosition().then(res => {
         this.currentLat =  res.coords.latitude;
         this.currentLong = res.coords.longitude;
@@ -61,30 +52,6 @@ export class MapsLocalPage {
         alert("erro ao pegar geolocalizacao ");
     });
 
-  }
-
-  public ccc() {
-    const mapOptions = {
-      zoom: 18,
-      center: this.position,
-      disableDefaultUI: true
-    }
-
-    this.mapX = new google.maps.Map(document.getElementById('mapX'), mapOptions);
-
-    const marker = new google.maps.Marker({
-      position: this.position,
-      mapX: this.mapX,
-
-      //Titulo
-      title: 'Minha posição',
-
-      //Animção
-      animation: google.maps.Animation.DROP, // BOUNCE
-
-      //Icone
-      icon: '../../assets/imgs/avatar/marty-avatar.png'
-    });
   }
 
   initializeMap(currentLat, currentLong) {
@@ -99,15 +66,11 @@ export class MapsLocalPage {
     this.map = new google.maps.Map(document.getElementById('map'), mapOptions);
     this.directionsDisplay.setMap(this.map);
 
-    const marker = new google.maps.Marker({
+    /* const marker = new google.maps.Marker({
       position: this.startPosition,
       map: this.map,
-    });
+    }); */
   }
-
-  success(pos) {
-
-  };
 
   calculateRoute() {
     if (this.destinationPosition && this.originPosition) {

@@ -2,7 +2,7 @@ import { NewsProvider } from './../../providers/news/news';
 import { News } from './../../models/news';
 
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, NavController, DateTime } from 'ionic-angular';
+import { IonicPage, NavParams, NavController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { RefresherService } from '../../providers/util/refresher.service';
 import { ToastService } from '../../providers/util/toast.service';
@@ -106,5 +106,4 @@ export class NewsEditPage {
     }
     return true;
   }
-
 }

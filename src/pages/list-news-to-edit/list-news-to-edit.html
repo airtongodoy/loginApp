@@ -17,7 +17,7 @@
     <ion-list *ngFor="let newsToEdit of newsExistentes | async">
         <ion-item>
                 <ion-thumbnail item-start>
-                  <img src="{{newsToEdit.urlImagem}}">
+                  <img src="{{newsToEdit.urlImagem}}" (click)="openNewsDetails(newsToEdit)">
                 </ion-thumbnail>
                 <h2>{{newsToEdit.titulo}}</h2>
                 <p>{{ (newsToEdit.conteudo?.length>30)? (newsToEdit.conteudo | slice:0:30)+'..':(newsToEdit.conteudo) }}...</p>

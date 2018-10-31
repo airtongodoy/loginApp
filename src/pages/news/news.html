@@ -44,7 +44,7 @@
   </ion-grid> -->
 
     <ion-card *ngFor="let novidade of newsExistentes | async">
-        <img width="150" height="150" [src]="novidade.urlImagem || defaultImage"/>
+        <img width="150" height="150" (click)="openNewsDetails(novidade)" [src]="novidade.urlImagem || defaultImage"/>
         <ion-card-content>
           <ion-card-title>
               <h2>{{ novidade.titulo }}

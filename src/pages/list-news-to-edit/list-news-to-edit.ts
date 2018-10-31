@@ -7,6 +7,7 @@ import { News } from '../../models/news';
 import { NewsProvider } from '../../providers/news/news';
 import { NewsEditPage } from '../news-edit/news-edit';
 import { AddNewsPage } from '../add-news/add-news';
+import { NewsDetailPage } from '../news-detail/news-detail';
 
 /**
  * Generated class for the ListNewsToEditPage page.
@@ -133,5 +134,10 @@ export class ListNewsToEditPage {
 
   openNewsUpdate(newsToEdit){
     this.navCtrl.push(NewsEditPage, {newsToEdit});
+  }
+
+  openNewsDetails(newsToDetail){
+    //console.log(newsToDetail);
+    this.navCtrl.push(NewsDetailPage, {newsToDetail});
   }
 }
